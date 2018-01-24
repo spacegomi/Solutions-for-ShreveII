@@ -30,35 +30,38 @@
 \newcommand{\intzero}{\int_{0}^{\infty}}
 \newcommand{\E}{\mathrm{E}}
 \newcommand{\F}{\mathcal{F}}
+\newcommand{\1}{\mbox{1}\hspace{-0.30em}\mbox{1}}
 
-\title{Solutions Manual for Shreve2}
-\author{Kohei Fukushima}
-\date{\today}
+\title{Solutions Manual for ShreveII}
+\author{spacegomi}
+\date{}
 
 \begin{document}
 \maketitle
 \pagestyle{fancy}
-\lhead{Kohei Fukushima}
-\rhead{\today}
+\lhead{Solutions Manual for ShreveII}
+%\rhead{\today}
 %\quad \; \: \, 左ほど大きな空白
 %\cdot ・ドット
+\setcounter{section}{2}
 \section{ブラウン運動}
-\noindent
-3.1\\
-Proof.
+\subsection{}
+%\noindent
 $0 \leq t < u_1 < u_2$に対して，
 $\mathcal{F}(t)\subset\mathcal{F}(u_1)$（定義3.3.3(i)情報の蓄積）がいえる．
 また，$W(u_2)-W(u_1)$は$\mathcal{F}(u_1)$
 と独立（定義3.3.3(iii)将来の増分の独立性）である．
 以上より，$W(u_2)-W(u_1)$は$\F_t$と独立である．
-\\ \\
-3.2
+
+\subsection{} %3.2
+$0\leq s\leq t$に対して，
 \begin{align*}
   \begin{split}
     W_t^2-t&=\{(W_t-W_s)+W_s\}^2-t \\
     &=(W_t-W_s)^2+2(W_t-W_s)W_s+W_s^2-t,
   \end{split}
 \end{align*}
+とおく．
 \begin{align*}
   \begin{split}
     \E[W_t^2-t|\mathcal{F}_s]
@@ -69,8 +72,9 @@ $\mathcal{F}(t)\subset\mathcal{F}(u_1)$（定義3.3.3(i)情報の蓄積）がい
     &=(t-s)+2\cdot0\cdot W_s+W_s^2-t=W_s^2-s.
   \end{split}
 \end{align*}
-\\ \\
-3.3\\
+以上より$W_t^2-t$はマルチンゲールである．
+
+\subsection{} %3.3
 $X-\mu \, \sim N(0,\sigma^2)$のモーメント母関数とその微分は，
 \begin{align*}
   &\varphi(u)=\E[e^{u(X-\mu)}]=e^{\sigma^2 u^2/2}, \,
@@ -83,26 +87,38 @@ $X-\mu \, \sim N(0,\sigma^2)$のモーメント母関数とその微分は，
   =(3\sigma^4 + 6\sigma^6 u^2+ \sigma^8 u^4)e^{\sigma^2 u^2/2}.
 \end{align*}
 尖度＝$\E[(X-\mu)^4]=\varphi^{(4)}(0)=3\sigma^4$.
-\\ \\
-3.4 ブラウン運動の他の変分(variation) \\
-(i)
+
+\subsection{ブラウン運動の他の変分(variation)} %3.4
+\subsubsection{(i)}
 以下を満たすような集合$A\in\F$が存在すると仮定する：\\
-$\mathrm{P}(A)>0, \, \omega \in A, \,
-\lim_{|\Pi| \to 0}\sum_{j=0}^{n-1}|W_{t_{j+1}}-W_{t_{j}}|(\omega) < \infty$ \\
-$\sum_{j=0}^{n-1}(W_{t_{j+1}}-W_{t_{j}})^2(\omega) \leq
-\max_{0\leq k\leq n-1}|W_{t_{k+1}}-W_{t_{k}}|(\omega)\cdot
-\sum_{j=0}^{n-1}|W_{t_{j+1}}-W_{t_{j}}|(\omega)$ となるが，\\
+\begin{align*}
+  \Pr(A)>0, \, \omega \in A, \,
+  \lim_{|\Pi| \to 0}\sum_{j=0}^{n-1}|W_{t_{j+1}}-W_{t_{j}}|
+  (\omega) < \infty
+\end{align*}
+このとき，
+\begin{align*}
+  \sum_{j=0}^{n-1}(W_{t_{j+1}}-W_{t_{j}})^2(\omega) \leq
+  \max_{0\leq k\leq n-1}|W_{t_{k+1}}-W_{t_{k}}|(\omega)\cdot
+  \sum_{j=0}^{n-1}|W_{t_{j+1}}-W_{t_{j}}|(\omega)
+\end{align*}
+となるが，\\
 $|\Pi| \to 0$とするとき，
 左辺はT，右辺は，$0\cdot(有限)=0$となり，矛盾する．
-したがって，１次変分はほとんどすべての経路で無限大に発散する．\\
-(ii)
-$\sum_{j=0}^{n-1}(W_{t_{j+1}}-W_{t_{j}})^3 \leq
-\max_{0\leq k\leq n-1}|W_{t_{k+1}}-W_{t_{k}}|\cdot
-\sum_{j=0}^{n-1}(W_{t_{j+1}}-W_{t_{j}})^2$は，\\
-$|\Pi|\to 0$のとき，
-$\to 0\cdot T=0$
-\\ \\
-3.5 ブラック-ショールズ-マートンの公式
+したがって，１次変分はほとんどすべての経路で無限大に発散する．
+
+\subsubsection{(ii)}
+３次変分について，以下の不等式を得る．
+\begin{align*}
+  \sum_{j=0}^{n-1}(W_{t_{j+1}}-W_{t_{j}})^3 \leq
+  \max_{0\leq k\leq n-1}|W_{t_{k+1}}-W_{t_{k}}|\cdot
+  \sum_{j=0}^{n-1}(W_{t_{j+1}}-W_{t_{j}})^2
+\end{align*} 
+この式の右辺は，$|\Pi|\to 0$とするとき，
+$0\cdot T=0$となる．
+
+\subsection{ブラック-ショールズ-マートンの公式} %3.5
+$\phi(x)$は標準正規分布の確率密度関数を表すものとする．
 \begin{align*}
   \begin{split}
     \E[e^{-rT}(S_T-K)^+]
@@ -144,12 +160,11 @@ $\to 0\cdot T=0$
 とおけば，
 \begin{align*}
   \E[e^{-rT}(S_T-K)^+]=S_0 N(d_+(T,S_0))
-  -K e^{-rT} N(d_-(T,S_0))
+  -K e^{-rT} N(d_-(T,S_0)).
 \end{align*}
-である．
-\\ \\
-3.6 \\
-(i)
+
+\subsection{} %3.6
+\subsubsection{(i)}
 ドリフトを持つブラウン運動$X_t=\mu t+W_t$について，
 \begin{align*}
   \begin{split}
@@ -166,8 +181,8 @@ $\to 0\cdot T=0$
     &=\intinf f(y)p(t-s,X_s,y)dy=g(X_s).
   \end{split}
 \end{align*}
-\\
-(ii)
+
+\subsubsection{(ii)}
 $\mu=\nu/\sigma$とすれば，
 幾何ブラウン運動は，
 $S_t=S_0 e^{\sigma W_t+\nu t}=S_t=S_0 e^{\sigma X_t}$とかける．
@@ -196,4 +211,241 @@ y-X_s=X_t-X_s=\df{1}{\sigma}(\ln{\df{z}{S_0}}-\ln{\df{S_s}{S_0}})
     &=\intzero f(z) p(t-s,S_s,z)dz=g(S_s).
   \end{split}
 \end{align*}
+
+\subsection{}
+\subsubsection{(i)}
+$\E[Z_t|\F_s]=\E[Z_s]$を示したいが，
+\begin{align*}
+  \begin{split}
+     \E\left[\df{Z_t}{Z_s}|\F_s\right]
+     &=\E\left[\exp\left\{ \sigma(X_t-X_s)
+     -(\sigma\mu+\df{1}{2}\sigma^2)(t-s) \right\}|\F_s\right]\\
+     &=\E\left[\exp\left\{\sigma\mu(t-s)+\sigma(W_t-W_s)
+     -(\sigma\mu+\df{1}{2}\sigma^2)(t-s)\right\}|\F_s\right]\\
+     &=\E\left[\exp\left\{\sigma(W_t-W_s)\right\}\right]
+     \cdot\exp\left\{-\df{1}{2}\sigma^2(t-s)\right\}=1.
+   \end{split}
+\end{align*}
+を得る．従って，$Z_t,t\geq0$はマルチンゲール．
+
+\subsubsection{(ii)}
+$Z_t$はマルチンゲールであるから，任意抽出定理より，
+\begin{align*}
+  \E[Z_{t\wedge\tau_m}]=\E[Z_0]=\E[\exp(0)]=1, \quad
+  t\geq0.
+\end{align*}
+
+\subsubsection{(iii)}
+$\tau_m=\min\{t\geq0; \, X_t=m\}$であるから，$t\leq\tau_m$において，
+以下が常に成り立つ．
+\begin{align*}
+  0 \leq \exp\{\sigma X_{t\wedge\tau_m}\} \leq e^{\sigma m}.
+\end{align*}
+
+まずは，
+$\exp\{-(\sigma\mu+\frac{\sigma^2}{2})(t\wedge\tau_m)\}$
+について考える．\\
+$\{\tau_m<\infty\}$のとき，
+\begin{align*}
+  \lim_{t\to\infty}
+  \exp\{-(\sigma\mu+\frac{\sigma^2}{2})(t\wedge\tau_m)\}
+  = \exp\{-(\sigma\mu+\frac{\sigma^2}{2})\tau_m\},
+\end{align*}
+$\{\tau_m=\infty\}$のとき，
+\begin{align*}
+  \exp\{-(\sigma\mu+\frac{\sigma^2}{2})(t\wedge\tau_m)\}
+  = \exp\{-(\sigma\mu+\frac{1}{2}\sigma^2)t\}
+  \to0 \quad (t\to\infty),
+\end{align*}
+これらをまとめると，以下のように表せる．
+\begin{align*}
+  \lim_{t\to\infty}
+  \exp\{-(\sigma\mu+\frac{\sigma^2}{2})(t\wedge\tau_m)\}
+  = \1_{\{\tau_m<\infty\}}
+  \exp\{-(\sigma\mu+\frac{\sigma^2}{2})\tau_m\}.
+\end{align*}
+
+次に，$\exp\{\sigma X_{t\wedge\tau_m}\}$について考える．\\
+$\{\tau_m<\infty\}$のとき，
+\begin{align*}
+  \lim_{t\to\infty}
+  \exp\{\sigma X_{t\wedge\tau_m}\}
+  = e^{\sigma X_{\tau_m}}=e^{\sigma m},
+\end{align*}
+$\{\tau_m=\infty\}$のとき，
+$t\to\infty$で$\exp\{\sigma X_{t\wedge\tau_m}\}$
+が有界であることは保証できる．
+したがって，$\exp\{-(\sigma\mu+\frac{\sigma^2}{2})(t\wedge\tau_m)\}$
+と$\exp\{\sigma X_{t\wedge\tau_m}\}$の積の極限値($t\to\infty$)は
+ゼロである．
+
+以上の議論をまとめると，以下を得る．
+\begin{align*}
+  \begin{split}
+    \lim_{t\to\infty} Z_{t\wedge\tau_m}
+    &=\lim_{t\to\infty}
+    \exp\{ \sigma X_{t\wedge\tau_m}
+    -(\sigma\mu+\frac{\sigma^2}{2})(t\wedge\tau_m) \} \\
+    &=\1_{\{\tau_m<\infty\}} \exp\{ \sigma m
+    -(\sigma\mu+\frac{\sigma^2}{2})\tau_m \} \\
+    &=\1_{\{\tau_m<\infty\}}Z_{\tau_m}
+  \end{split}
+\end{align*}
+
+3.7(ii)の結果について極限をとると，優収束定理により，
+\begin{align*}
+  \lim_{t\to\infty}\E[Z_{t\wedge\tau_m}]
+  =\E[\lim_{t\to\infty}Z_{t\wedge\tau_m}]
+  =\E[\1_{\{\tau_m<\infty\}}Z_{\tau_m}]
+  =1.
+\end{align*}
+つまり，
+\begin{align*}
+  \E\left[\1_{\{\tau_m<\infty\}} \exp\{ \sigma m
+  -(\sigma\mu+\frac{\sigma^2}{2})\tau_m \} \right]=1
+\end{align*}
+を得る（前半部証明終了）．これと同値な式として次式を得る．
+\begin{align*}
+  \E\left[\1_{\{\tau_m<\infty\}}
+  \exp\{-(\sigma\mu+\frac{\sigma^2}{2})\tau_m\}\right]
+  =e^{-\sigma m}.
+\end{align*}
+全ての正の$\sigma$でこの式は成り立つので，
+両辺を$\sigma\to0$として極限をとると，単調収束定理より，
+$\E[\1_{\{\tau_m<\infty\}}]=1$を得る．それと同値な式として，
+$\Pr\{\tau_m<\infty\}=1$を得る．
+この結果から，上で得た期待値の式の定義関数を外すことができ，
+\begin{align*}
+  \E\left[\exp\{-(\sigma\mu+\frac{\sigma^2}{2})\tau_m\}\right]
+  =e^{-\sigma m}.
+\end{align*}
+を得る．最後に，
+$\sigma\mu+\frac{\sigma^2}{2}=\alpha$とおけば，
+$\sigma>0,\alpha>0$という条件の下で$\sigma$について解くと，
+\begin{align*}
+  \sigma=-\mu+\sqrt{2\alpha+\mu^2}
+\end{align*}
+となり，以下のラプラス変換を得る．
+\begin{align*}
+  \E[e^{-\alpha\tau_m}]=e^{-\sigma m}
+  =e^{m\mu-m\sqrt{2\alpha+\mu^2}}, \quad \alpha>0.
+\end{align*}
+
+\subsection{} %3.8
+\subsubsection{(i)}
+$\frac{1}{\sqrt{n}}M_{nt,n}$のモーメント母関数$\varphi(u)$は，
+リスク中立測度を用いて以下のように表せる．
+\begin{align*}
+  \begin{split}
+    \varphi_n(u)
+    &=\tilde{\E}\left[\exp(u\frac{1}{\sqrt{n}}M_{nt,n})\right]
+    =\tilde{\E}\left[\exp\left\{\frac{u}{\sqrt{n}}
+    (X_{i,n}+...+X_{nt,n})\right\} \right] \\
+    &=\left( \tilde{\E}\left[e^{\frac{u}{\sqrt{n}}X_{1,n}}
+    \right] \right)^{nt}
+    =\left( e^{\frac{u}{\sqrt{n}}\cdot 1}\tilde{p}_n
+    +e^{-\frac{u}{\sqrt{n}}\cdot (-1)}\tilde{q}_n \right)^{nt}
+    \\
+    &=\left[ e^{\frac{u}{\sqrt{n}}}
+    \left(  \df{\frac{r}{n}+1-e^{-\sigma/\sqrt{n}}}
+    {e^{\sigma/\sqrt{n}}-e^{-\sigma/\sqrt{n}}}  \right)
+    +e^{-\frac{u}{\sqrt{n}}}
+    \left(  \df{e^{\sigma/\sqrt{n}}-\frac{r}{n}-1}
+    {e^{\sigma/\sqrt{n}}-e^{-\sigma/\sqrt{n}}}  \right)
+    \right]^{nt} \\
+    &=\left[ e^{\frac{u}{\sqrt{n}}}
+    \left(  \df{\frac{r}{n}+1-e^{-\sigma/\sqrt{n}}}
+    {e^{\sigma/\sqrt{n}}-e^{-\sigma/\sqrt{n}}}  \right)
+    -e^{-\frac{u}{\sqrt{n}}}
+    \left(  \df{\frac{r}{n}+1-e^{\sigma/\sqrt{n}}}
+    {e^{\sigma/\sqrt{n}}-e^{-\sigma/\sqrt{n}}}  \right)
+    \right]^{nt}.
+  \end{split}
+\end{align*}
+
+\subsubsection{(ii)}
+変数変換$x=\frac{1}{\sqrt{n}}$を施すと，
+\begin{align*}
+  \varphi_{\frac{1}{x^2}}(u)
+  =\left[ e^{ux}
+  \left(  \df{rx^2+1-e^{-\sigma x}}
+  {e^{\sigma x}-e^{-\sigma x}}  \right)
+  -e^{-ux}
+  \left(  \df{rx^2+1-e^{\sigma x}}
+  {e^{\sigma x}-e^{-\sigma x}}  \right)
+  \right]^{\frac{t}{x^2}}
+\end{align*}
+を得る．
+対数をとると，次式を得る．
+\begin{align*}
+  \begin{split}
+    \ln\varphi_{\frac{1}{x^2}}(u)
+    &=\df{t}{x^2}\ln\left[\df {(rx^2+1)(e^{ux}-e^{-ux})
+    +e^{(\sigma-u)x}-e^{-(\sigma-u)x}}
+    {e^{\sigma x}-e^{-\sigma x}} \right] \\
+    &=\df{t}{x^2}\ln\left[
+    \df {(rx^2+1) \sinh{ux} +\sinh{(\sigma-u)x}}
+    {\sinh{\sigma x}} \right] \\
+    &=\df{t}{x^2}\ln\left[
+    \df {(rx^2+1) \sinh{ux}
+    + \sinh{\sigma x}\cosh{ux} - \cosh{\sigma x}\sinh{ux} }
+    {\sinh{\sigma x}} \right] \\
+    &=\df{t}{x^2}\ln\left[ \cosh{ux}
+    +\df{(rx^2+1-\cosh{\sigma x}) \sinh{ux}}
+    {\sinh{\sigma x}} \right].
+  \end{split}
+\end{align*}
+
+\subsubsection{(iii)}
+$x$の極限をとることに注意すれば，テイラー級数展開を用いて
+次式を得る．
+\begin{align*}
+  \begin{split}
+    &\cosh{ux}+\df{(rx^2+1-\cosh{\sigma x})\sinh{ux}}
+    {\sinh{\sigma x}} \\
+    =&1+\df{u^2 x^2}{2}+O(x^4)+
+    \df{ \left( rx^2+1 -1-\frac{\sigma^2 x^2}{2} +O(x^4)
+    \right) (ux+O(x^3)) } {\sigma x+O(x^3)} \\
+    =&1+\df{u^2 x^2}{2}+O(x^4)+
+    \df{\left( rx^2-\frac{\sigma^2 x^2}{2}\right)ux^3+O(x^5)}
+    {\sigma x+O(x^3)} \\
+    =&1+\df{u^2 x^2}{2}+
+    \df{\left( rx^2-\frac{\sigma^2 x^2}{2}\right)
+    ux^3(1+O(x^2))}  {\sigma x(1+O(x^2))}  +O(x^4) \\
+    =&1+\df{u^2 x^2}{2}+\df{rux^2}{\sigma}
+    -\df{\sigma ux^2}{2}+O(x^4).
+  \end{split}
+\end{align*}
+
+\subsubsection{(iv)}
+3.8(iii)の結果より，$\ln\varphi_{\frac{1}{x^2}}(u)$
+に対してもテイラー級数展開を用いて次式を得る．
+\begin{align*}
+  \ln\varphi_{\frac{1}{x^2}}(u)
+  =\df{t}{x^2} \ln\left(
+  1+\df{u^2 x^2}{2}+\df{rux^2}{\sigma}
+  -\df{\sigma ux^2}{2}+O(x^4) \right)
+  ＝\df{t}{x^2}\left(\df{u^2 x^2}{2}+\df{rux^2}{\sigma}
+  -\df{\sigma ux^2}{2}+O(x^4) \right).
+\end{align*}
+$x\to0$の極限をとれば，
+\begin{align*}
+  \lim_{x\to0}\ln\varphi_{\frac{1}{x^2}}(u)
+  =t(\df{u^2}{2}+\df{ru}{\sigma}-\df{\sigma u}{2})
+  =\df{1}{2}tu^2+t(\df{r}{\sigma}-\df{\sigma}{2})u
+\end{align*}
+を得る．$x\to0$は$n\to\infty$の極限に対応するため，
+これは，二項モデルの確率変数$\frac{1}{\sqrt{n}}M_{nt,n}$の
+極限分布を考えていることにあたる．
+モーメント母関数に対して確率分布は一意に定まり，
+上で得たキュムラント(モーメント母関数の対数)から，
+$\frac{1}{\sqrt{n}}M_{nt,n}$の極限分布は
+平均$t(\frac{r}{\sigma}-\frac{\sigma}{2})$，
+分散$t$の正規分布となることがわかる．
+したがって，$\frac{\sigma}{\sqrt{n}}M_{nt,n}$の極限分布は，
+平均$t(r-\frac{\sigma^2}{2})$，
+分散$\sigma^2 t$の正規分布となる．
+
+\subsection{} %3.9
+考え中．
 \end{document}
