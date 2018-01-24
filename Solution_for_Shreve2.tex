@@ -1,0 +1,199 @@
+\documentclass[a4paper,11pt]{jsarticle}
+\usepackage{amsmath,amssymb} %\dfrac
+\usepackage{bm} %\bm：斜体太字の文字を書けるようにする（ベクトル表記）
+\usepackage{ascmac} %参考http://akita-nct.jp/yamamoto/comp/latex/make_doc/box/box.php
+\usepackage{fancyhdr} %ヘッダに任意の文字列を書く
+\usepackage{amsfonts} %\mathbb：白抜き文字を書けるようにする
+\usepackage{enumerate}
+
+\usepackage[dvipdfmx]{graphicx} %図表を入れる場合
+\usepackage{float} %図表の位置
+\usepackage{subfigure}
+
+\makeatletter
+   \renewcommand{\theequation}{%
+   \thesection.\arabic{equation}}
+   \@addtoreset{equation}{section}
+\makeatother
+
+\newtheorem{Definition}{定義}[section]
+\newtheorem{Theorem}{定理}[section]
+\newtheorem{Lemma}{補助定理}[section]
+\newtheorem{Proof}{証明}[section]
+
+%偏微分，チルダ，分数
+\newcommand{\pd}[2]{\dfrac{\partial #1}{\partial #2}}
+\newcommand{\pdd}[2]{\dfrac{{\partial}^2 #1} {\partial {#2}^2} }
+\newcommand{\ti}[1]{\tilde{#1}}
+\newcommand{\df}[2]{\dfrac{#1}{#2}}
+\newcommand{\intinf}{\int_{-\infty}^{\infty}}
+\newcommand{\intzero}{\int_{0}^{\infty}}
+\newcommand{\E}{\mathrm{E}}
+\newcommand{\F}{\mathcal{F}}
+
+\title{Solutions Manual for Shreve2}
+\author{Kohei Fukushima}
+\date{\today}
+
+\begin{document}
+\maketitle
+\pagestyle{fancy}
+\lhead{Kohei Fukushima}
+\rhead{\today}
+%\quad \; \: \, 左ほど大きな空白
+%\cdot ・ドット
+\section{ブラウン運動}
+\noindent
+3.1\\
+Proof.
+$0 \leq t < u_1 < u_2$に対して，
+$\mathcal{F}(t)\subset\mathcal{F}(u_1)$（定義3.3.3(i)情報の蓄積）がいえる．
+また，$W(u_2)-W(u_1)$は$\mathcal{F}(u_1)$
+と独立（定義3.3.3(iii)将来の増分の独立性）である．
+以上より，$W(u_2)-W(u_1)$は$\F_t$と独立である．
+\\ \\
+3.2
+\begin{align*}
+  \begin{split}
+    W_t^2-t&=\{(W_t-W_s)+W_s\}^2-t \\
+    &=(W_t-W_s)^2+2(W_t-W_s)W_s+W_s^2-t,
+  \end{split}
+\end{align*}
+\begin{align*}
+  \begin{split}
+    \E[W_t^2-t|\mathcal{F}_s]
+    &=\E[(W_t-W_s)^2|\mathcal{F}_s]
+    +2\E[(W_t-W_s)W_s|\mathcal{F}_s]
+    +\E[W_s|\mathcal{F}_s]-t \\
+    &=\E[(W_t-W_s)^2]+2\E[W_t-W_s]\E[W_s|\F_s]+\E[W_s^2|\F_s]-t\\
+    &=(t-s)+2\cdot0\cdot W_s+W_s^2-t=W_s^2-s.
+  \end{split}
+\end{align*}
+\\ \\
+3.3\\
+$X-\mu \, \sim N(0,\sigma^2)$のモーメント母関数とその微分は，
+\begin{align*}
+  &\varphi(u)=\E[e^{u(X-\mu)}]=e^{\sigma^2 u^2/2}, \,
+  \varphi^{(1)}(u)=\sigma^2 u e^{\sigma^2 u^2/2}, \,
+  \varphi^{(2)}(u)=(\sigma^2 + \sigma^4 u^2) e^{\sigma^2 u^2/2}, \\
+  &\varphi^{(3)}(u)=(2\sigma^4 u + \sigma^4 u +\sigma^6 u^3)e^{\sigma^2 u^2/2}
+  =(3\sigma^4 u + \sigma^6 u^3)e^{\sigma^2 u^2/2}, \\
+  &\varphi^{(4)}(u)=(3\sigma^4 + 3\sigma^6 u^2 +3\sigma^6 u^2+ \sigma^8 u^4)
+  e^{\sigma^2 u^2/2}
+  =(3\sigma^4 + 6\sigma^6 u^2+ \sigma^8 u^4)e^{\sigma^2 u^2/2}.
+\end{align*}
+尖度＝$\E[(X-\mu)^4]=\varphi^{(4)}(0)=3\sigma^4$.
+\\ \\
+3.4 ブラウン運動の他の変分(variation) \\
+(i)
+以下を満たすような集合$A\in\F$が存在すると仮定する：\\
+$\mathrm{P}(A)>0, \, \omega \in A, \,
+\lim_{|\Pi| \to 0}\sum_{j=0}^{n-1}|W_{t_{j+1}}-W_{t_{j}}|(\omega) < \infty$ \\
+$\sum_{j=0}^{n-1}(W_{t_{j+1}}-W_{t_{j}})^2(\omega) \leq
+\max_{0\leq k\leq n-1}|W_{t_{k+1}}-W_{t_{k}}|(\omega)\cdot
+\sum_{j=0}^{n-1}|W_{t_{j+1}}-W_{t_{j}}|(\omega)$ となるが，\\
+$|\Pi| \to 0$とするとき，
+左辺はT，右辺は，$0\cdot(有限)=0$となり，矛盾する．
+したがって，１次変分はほとんどすべての経路で無限大に発散する．\\
+(ii)
+$\sum_{j=0}^{n-1}(W_{t_{j+1}}-W_{t_{j}})^3 \leq
+\max_{0\leq k\leq n-1}|W_{t_{k+1}}-W_{t_{k}}|\cdot
+\sum_{j=0}^{n-1}(W_{t_{j+1}}-W_{t_{j}})^2$は，\\
+$|\Pi|\to 0$のとき，
+$\to 0\cdot T=0$
+\\ \\
+3.5 ブラック-ショールズ-マートンの公式
+\begin{align*}
+  \begin{split}
+    \E[e^{-rT}(S_T-K)^+]
+    &=e^{-rT}\int_{w\in D} (S_0e^{(r-\sigma^2/2)T+\sigma w}-K)
+    \df{1}{\sqrt{2\pi T}}e^{-w^2/2T} dw \\
+    &=e^{-rT}\int_{\sqrt{T}z\in D} (S_0e^{(r-\sigma^2/2)T+\sigma \sqrt{T}z}-K)
+    \df{1}{\sqrt{2\pi}}e^{-z^2/2} dz \\
+    &=S_0 \int_{\sqrt{T}z\in D}
+    \df{1}{\sqrt{2\pi}}e^{-(z-\sigma \sqrt{T})^2/2} dz
+    -K e^{-rT} \int_{\sqrt{T}z\in D}
+    \df{1}{\sqrt{2\pi}}e^{-z^2/2} dz \\
+    &=S_0 \int_{\sqrt{T}(y+\sigma\sqrt{T})\in D}\phi(y)dy
+    -K e^{-rT} \int_{\sqrt{T}z\in D}\phi(z)dz
+  \end{split}
+\end{align*}
+ここで，
+\begin{align*}
+  D=\{x;S_T(x)-K>0\}=\left\{x; x>\df{1}{\sigma} \left[\ln{\df{K}{S_0}}
+  -\left(r-\df{\sigma^2}{2}\right) T \right] \right\}
+\end{align*}
+であるから，最終行の$y,z$の積分範囲はそれぞれ，
+\begin{align*}
+  &y>\df{1}{\sigma\sqrt{T}} \left[\ln{\df{K}{S_0}}
+  -\left(r-\df{\sigma^2}{2}\right) T \right] - \sigma\sqrt{T}
+  %=\df{1}{\sigma\sqrt{T}} \left[\ln{\df{K}{S_0}}
+  %-\left(r+\df{\sigma^2}{2}\right) T \right]
+  =-\df{1}{\sigma\sqrt{T}} \left[\ln{\df{S_0}{K}}
+  +\left(r+\df{\sigma^2}{2}\right) T \right] \\
+  & z>\df{1}{\sigma\sqrt{T}} \left[\ln{\df{K}{S_0}}
+  -\left(r-\df{\sigma^2}{2}\right) T \right]
+  =-\df{1}{\sigma\sqrt{T}} \left[\ln{\df{S_0}{K}}
+  +\left(r-\df{\sigma^2}{2}\right) T \right]
+\end{align*}
+であり，
+\begin{align*}
+  d_{\pm}(T,S_0)=\df{1}{\sigma\sqrt{T}} \left[\ln{\df{S_0}{K}}
+  +\left(r\pm\df{\sigma^2}{2}\right) T \right]
+\end{align*}
+とおけば，
+\begin{align*}
+  \E[e^{-rT}(S_T-K)^+]=S_0 N(d_+(T,S_0))
+  -K e^{-rT} N(d_-(T,S_0))
+\end{align*}
+である．
+\\ \\
+3.6 \\
+(i)
+ドリフトを持つブラウン運動$X_t=\mu t+W_t$について，
+\begin{align*}
+  \begin{split}
+    \E[f(X_t)|\F(s)]&=\E[f(\mu t+W_t)|\F(s)]
+    =\E[f(W_t-W_s+W_s+\mu t)|\F(s)] \\
+    &=\intinf f(w+W_s+\mu t)\df{1}{\sqrt{2\pi(t-s)}}
+    \exp\left(-\frac{w^2}{2(t-s)}\right)dw \\
+    &=\intinf f(y)\df{1}{\sqrt{2\pi(t-s)}}
+    \exp\left(-\frac{(y-W_s-\mu t)^2}{2(t-s)}\right)dy\\
+    &=\intinf f(y)\df{1}{\sqrt{2\pi(t-s)}}
+    \exp\left(-\frac{(y-W_s-\mu s-\mu(t-s))^2}{2(t-s)}\right)dy\\
+    &=\intinf f(y)\df{1}{\sqrt{2\pi(t-s)}}
+    \exp\left(-\frac{(y-X_s-\mu(t-s))^2}{2(t-s)}\right)dy\\
+    &=\intinf f(y)p(t-s,X_s,y)dy=g(X_s).
+  \end{split}
+\end{align*}
+\\
+(ii)
+$\mu=\nu/\sigma$とすれば，
+幾何ブラウン運動は，
+$S_t=S_0 e^{\sigma W_t+\nu t}=S_t=S_0 e^{\sigma X_t}$とかける．
+(i)の結果(5行目)を利用して，
+\begin{align*}
+  \begin{split}
+    \E[f(S_t)|\F(s)]&=\E[f(S_0 e^{\sigma X_t})|\F(s)] \\
+    &=\intinf f(S_0 e^{\sigma y})\df{1}{\sqrt{2\pi(t-s)}}
+    \exp\left(-\frac{(y-X_s-\mu(t-s))^2}{2(t-s)}\right)dy
+  \end{split}
+\end{align*}
+$z=S_0 e^{\sigma y}=S_0 e^{\sigma X_t}$という変数変換を考えれば，
+積分範囲は$z:0\to\infty$で，\\
+$y=\df{1}{\sigma}\ln{\df{z}{S_0}}, \quad dy=\df{1}{\sigma z}dz, \quad
+y-X_s=X_t-X_s=\df{1}{\sigma}(\ln{\df{z}{S_0}}-\ln{\df{S_s}{S_0}})
+=\df{1}{\sigma}\ln{\df{z}{S_s}}$であるから，
+\begin{align*}
+  \begin{split}
+    \E[f(S_t)|\F(s)]
+    &=\intzero f(z)\df{1}{\sqrt{2\pi(t-s)}}
+    \exp\left\{-\frac{\left( \df{1}{\sigma}\ln\df{z}{S_s}
+    -\mu(t-s) \right)^2}{2(t-s)}\right\}\df{1}{\sigma z}dz \\
+    &=\intzero f(z)\df{1}{\sigma z\sqrt{2\pi(t-s)}}
+    \exp\left\{-\frac{\left(\ln(z/S_s)-\nu(t-s)\right)^2}
+    {2\sigma^2(t-s)}\right\}dz \\
+    &=\intzero f(z) p(t-s,S_s,z)dz=g(S_s).
+  \end{split}
+\end{align*}
+\end{document}
